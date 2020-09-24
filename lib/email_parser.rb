@@ -6,13 +6,14 @@
 require 'pry'
 
 class EmailAddressParser
+  attr_accessor :email_addresses
   
   def initialize (email_addresses)
-    @email_input = email_addresses
+    @email_addresses = email_addresses
   end
   
   def parse
-    email_ar = @email_input.split(" ")
+    email_ar = @email_addresses.split(" ")
     email_ar.map! do |email|
       if email[-1] == ","
         email.delete_suffix(",") 
@@ -20,8 +21,8 @@ class EmailAddressParser
         email
       end
     end
-    @parsed_emails = email_ar.uniq
-    @parsed_emails
+    @email_addresses = email_ar.uniq
+    @email_addresses
   end
   
 end
